@@ -1,0 +1,24 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="song">Song:</label>
+      <input id="song" formControlName="song" />
+      <div *ngIf="addForm.get('song')?.invalid && addForm.get('song')?.touched">
+        Song is required.
+      </div>
+    </div>
+    <div>
+      <label for="releaseDate">Release Date:</label>
+      <input id="releaseDate" type="date" formControlName="releaseDate" />
+      <div *ngIf="addForm.get('releaseDate')?.invalid && addForm.get('releaseDate')?.touched">
+        Release date is required.
+      </div>
+    </div>
+    <div>
+      <label for="singers">Singers:</label>
+      <select id="singers" formControlName="selectedSong" multiple>
+        <option *ngFor="let singer of singerList$ | async" [value]="singer.singerId">{{ singer.name }}</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="addForm.invalid">Add Song</button>
+  </form>
+  

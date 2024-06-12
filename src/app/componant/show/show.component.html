@@ -1,0 +1,22 @@
+<button routerLink="add">Add</button>
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Song</th>
+      <th>Date</th>
+      <th>Singer Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let song of songList$ | async" [ngClass]="{ 'red-text': song.singerCount > 1, 'green-text': song.singerCount <= 1 }">
+      <td>
+        <button>Edit</button>
+        <button (click)="deleteSong(song.id)">Delete</button>
+      </td>
+      <td>{{ song.song }}</td>
+      <td>{{ song.releaseDate | date }}</td>
+      <td>{{ song.singerCount }}</td>
+    </tr>
+  </tbody>
+</table>
